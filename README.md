@@ -2,6 +2,10 @@
 
 This repository contains a Python script that predicts the outcomes of Kings League France matches.
 
+## Résultats
+
+![Simulation du classement finale à la 3ème journée](result/classement_kings_league_france_J3.png "Simulated final ranking after the 3rd day")
+
 ## Requirements
 
 - Python 3.12
