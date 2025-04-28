@@ -4,7 +4,13 @@ This repository contains a Python script that predicts the outcomes of Kings Lea
 
 ## Result
 
+### Day 3
+
 ![Simulation du classement finale à la 3ème journée](result/classement_kings_league_france_J3.png "Simulated final ranking after the 3rd day")
+
+### Day 4
+
+![Simulation du classement finale à la 4ème journée](result/classement_kings_league_france_J4.png "Simulated final ranking after the 4th day")
 
 ## Requirements
 
