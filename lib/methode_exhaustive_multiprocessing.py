@@ -25,7 +25,7 @@ def simulate_chunk(args) -> dict[Any | str, list[int]]:
     local_counter:dict[Any | str, list[int]] = {team: [0] * len(teams) for team in teams}
     
     # Simulation des scénarios
-    match_indices:islice[tuple[int, ...]] = islice(product(range(len(match_outcomes)), repeat=len(remaining_matches)), start, end)
+    match_indices:islice[tuple[int, ...]] = islice(product(range(len(match_outcomes)), repeat=len(remaining_matches)), start, start+end)
     outcome_indices:tuple[int, ...]
     for outcome_indices in match_indices:
         points:dict[str, int] = current_points.copy()
@@ -43,7 +43,7 @@ def simulate_chunk(args) -> dict[Any | str, list[int]]:
         team:str
         for pos, (team, _) in enumerate(sorted_teams):
             local_counter[team][pos] += 1
-    
+    print(f'Final results {local_counter}')
     return local_counter
     
 def merge_counters(counters: list[dict[Any | str, list[int]]], teams: list[str]) -> dict[str, list[int]]:
@@ -92,6 +92,7 @@ def methode_exhaustive_multiprocessing(current_points: dict[str, int], remaining
     chunk_size: int = total_scenarios // num_cores
     ranges: list[tuple[int, int]] = [(i * chunk_size, chunk_size) for i in range(num_cores)]
     ranges[-1] = (ranges[-1][0], total_scenarios - ranges[-1][0])
+    print(ranges)
 
     args_list: list[tuple[int, int, dict[str, int], list[tuple[str, str]], list[str], list[tuple[int, int]]]] = [(start, end, current_points, remaining_matches, teams, match_outcomes) for start, end in ranges]
 
