@@ -16,6 +16,10 @@ This repository contains a Python script that predicts the outcomes of Kings Lea
 
 ![Simulation du classement finale à la 5ème journée](result/classement_kings_league_france_J5.png "Simulated final ranking after the 5th day")
 
+### Day 6
+
+![Simulation du classement finale à la 6ème journée](result/classement_kings_league_france_J6.png "Simulated final ranking after the 6th day")
+
 ## Requirements
 
 - Python 3.12

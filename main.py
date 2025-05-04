@@ -14,11 +14,11 @@ from lib.methode_monte_carlo import monte_carlo
 def main() -> None:
     # Classement initial
     current_points: dict[str, int]  = {
-        "Unit3d": 9,
-        "F2R": 12,
-        "PANAM ALL STARZ": 12,
+        "Unit3d": 12,
+        "F2R": 15,
+        "PANAM ALL STARZ": 15,
         "Wolf Pack FC": 5,
-        "KARASU": 6,
+        "KARASU": 9,
         "Generation Seven": 9,
         "360 Nation": 6,
         "FC SILMI": 1
@@ -26,10 +26,6 @@ def main() -> None:
 
     # Matchs restants (format: (équipe à domicile, équipe à l’extérieur))
     remaining_matches: list[tuple[str, str]] = [
-        ("KARASU", "Generation Seven"),
-        ("Unit3d", "Wolf Pack FC"),
-        ("F2R","FC SILMI"),
-        ("360 Nation", "PANAM ALL STARZ"),
         ("FC SILMI", "KARASU"),
         ("PANAM ALL STARZ", "Unit3d"),
         ("Wolf Pack FC", "F2R"),
@@ -90,8 +86,8 @@ def main() -> None:
     df = df.drop(columns=["Classement moyen"])
     
     # Export CSV
-    df.to_csv("./result/classement_kings_league_france_J5.csv")
-    print("Fichier CSV généré : ./result/classement_kings_league_france_J5.csv")
+    df.to_csv("./result/classement_kings_league_france_J6.csv")
+    print("Fichier CSV généré : ./result/classement_kings_league_france_J6.csv")
 
     # Afficher la heatmap
     plt.figure(figsize=(48, 28))
@@ -125,7 +121,7 @@ def main() -> None:
     plt.xticks(rotation=0)
     plt.yticks(rotation=0)
     plt.tight_layout()
-    plt.savefig("result/classement_kings_league_france_J5.png", dpi=300)
+    plt.savefig("result/classement_kings_league_france_J6.png", dpi=300)
 
 if __name__ == "__main__":
     main()
