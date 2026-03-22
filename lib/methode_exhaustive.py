@@ -1,16 +1,18 @@
 from itertools import product
 
 
-def methode_exhaustive(current_points: dict[str, int], remaining_matches: list[tuple[str, str]]) -> dict[str, list[int]]:
+def methode_exhaustive(
+    current_points: dict[str, int], remaining_matches: list[tuple[str, str]]
+) -> tuple[dict[str, list[int]], int]:
     """
     Simule les résultats des matchs restants en utilisant la méthode exhaustive.
-    
+
     Args:
         current_points (dict[str, int]): Dictionnaire contenant les points actuels de chaque équipe.
         remaining_matches (list[tuple[str, str]]): Liste des matchs restants à jouer, chaque match étant représenté par un tuple d'équipes.
 
     Returns:
-        dict[str, list[int]]: Dictionnaire contenant le nombre de fois où chaque équipe a terminé à chaque position.
+        tuple[dict[str, list[int]], int]: Tuple contenant le dictionnaire des positions finales et le nombre total de scénarios.
     """
     # Définition des équipes et issues possibles d’un match
     teams: list[str] = list(current_points.keys())
@@ -18,7 +20,9 @@ def methode_exhaustive(current_points: dict[str, int], remaining_matches: list[t
 
     # Génération de toutes les combinaisons possibles de résultats
     total_scenarios: int = len(match_outcomes) ** len(remaining_matches)
-    all_combinations: product[tuple[tuple[int, int], ...]] = product(match_outcomes, repeat=len(remaining_matches))
+    all_combinations: product[tuple[tuple[int, int], ...]] = product(
+        match_outcomes, repeat=len(remaining_matches)
+    )
 
     # Compteur de positions finales pour chaque équipe
     position_counter: dict[str, list[int]] = {team: [0] * len(teams) for team in teams}
@@ -40,7 +44,9 @@ def methode_exhaustive(current_points: dict[str, int], remaining_matches: list[t
             points[team2] += pts2
 
         # Tri des équipes par points
-        sorted_teams: list[tuple[str, int]] = sorted(points.items(), key=lambda x: (-x[1], x[0]))
+        sorted_teams: list[tuple[str, int]] = sorted(
+            points.items(), key=lambda x: (-x[1], x[0])
+        )
         position: int
         team: str
         for position, (team, _) in enumerate(sorted_teams):

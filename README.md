@@ -22,10 +22,11 @@ This repository contains a Python script that predicts the outcomes of Kings Lea
 
 ## Requirements
 
-- Python 3.12
+- Python 3.14
 - pandas
 - matplotlib
 - seaborn
+- pillow
 
 ## Installation
 

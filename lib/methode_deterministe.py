@@ -33,7 +33,7 @@ def methode_deterministe(num_simulations:int, current_points: dict[str, int], re
         outcome:tuple[int, int]
         for match, outcome in zip(remaining_matches, outcome_set):
             team1:str
-            team2
+            team2:str
             team1, team2 = match
             pts1:int
             pts2:int
