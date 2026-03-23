@@ -95,8 +95,8 @@ def generate_heatmap(df: pd.DataFrame, output_path: Path, title: str) -> None:
             ax.add_artist(ab)
 
     ax.set_title(title, fontsize=72, weight="bold", pad=15)
-    ax.set_xlabel("Position finale")
-    ax.tick_params(axis="x", rotation=0)
+    ax.set_xlabel("Position finale", fontsize=48, labelpad=20)
+    ax.tick_params(axis="x", rotation=0, labelsize=36)
     ax.tick_params(axis="y", rotation=0)
 
     fig.tight_layout()

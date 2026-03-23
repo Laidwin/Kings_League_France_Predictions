@@ -22,7 +22,7 @@ class MatchdayConfig:
 
     @property
     def name(self) -> str:
-        return f"Kings League France - {self.season} Split {self.split} Journée {self.journee}"
+        return f"Kings League France - {self.season.replace('-', '/')} - Split {self.split} - Journée {self.journee}"
 
     @property
     def teams(self) -> list[str]:
