@@ -1,13 +1,19 @@
-# OS files
+# OS
 .DS_Store
 
-# Python-generated files
+# Python
 __pycache__/
-*.py[oc]
+*.py[cod]
+*.egg-info/
 build/
 dist/
 wheels/
-*.egg-info
 
 # Virtual environments
-.venv
+.venv/
+
+# Tools
+.ruff_cache/
+
+# Résultats temporaires (les résultats officiels par journée sont versionnés)
+result/*Test*

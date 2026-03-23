@@ -1,0 +1,93 @@
+[matchday]
+season = "2024-2025"
+split = 1
+journee = 6
+
+[simulation]
+method = "monte_carlo_mp"
+nb_simulations = 10_000_000
+avg_goals = 4.5
+
+[standings]
+"Unit3d" = 9
+"Athletic Dragon Blanc" = 9
+"PANAM ALL STARZ" = 6
+"Wolf Pack FC" = 3
+"KARASU" = 3
+"Generation Seven" = 3
+"360 Nation" = 2
+"FC SILMI" = 1
+
+[strengths]
+"Unit3d" = 50
+"Athletic Dragon Blanc" = 50
+"PANAM ALL STARZ" = 50
+"Wolf Pack FC" = 50
+"KARASU" = 50
+"Generation Seven" = 50
+"360 Nation" = 50
+"FC SILMI" = 50
+
+[[remaining_matches]]
+home = "FC SILMI"
+away = "PANAM ALL STARZ"
+
+[[remaining_matches]]
+home = "360 Nation"
+away = "Unit3d"
+
+[[remaining_matches]]
+home = "Generation Seven"
+away = "Athletic Dragon Blanc"
+
+[[remaining_matches]]
+home = "KARASU"
+away = "Wolf Pack FC"
+
+[[remaining_matches]]
+home = "Unit3d"
+away = "Athletic Dragon Blanc"
+
+[[remaining_matches]]
+home = "Wolf Pack FC"
+away = "360 Nation"
+
+[[remaining_matches]]
+home = "Generation Seven"
+away = "FC SILMI"
+
+[[remaining_matches]]
+home = "PANAM ALL STARZ"
+away = "KARASU"
+
+[[remaining_matches]]
+home = "KARASU"
+away = "Generation Seven"
+
+[[remaining_matches]]
+home = "Unit3d"
+away = "Wolf Pack FC"
+
+[[remaining_matches]]
+home = "Athletic Dragon Blanc"
+away = "FC SILMI"
+
+[[remaining_matches]]
+home = "360 Nation"
+away = "PANAM ALL STARZ"
+
+[[remaining_matches]]
+home = "FC SILMI"
+away = "KARASU"
+
+[[remaining_matches]]
+home = "PANAM ALL STARZ"
+away = "Unit3d"
+
+[[remaining_matches]]
+home = "Wolf Pack FC"
+away = "Athletic Dragon Blanc"
+
+[[remaining_matches]]
+home = "Generation Seven"
+away = "360 Nation"

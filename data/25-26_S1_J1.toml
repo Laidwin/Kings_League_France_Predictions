@@ -1,0 +1,40 @@
+[matchday]
+season = "2025-2026"
+split = 1
+journee = 1
+
+[simulation]
+method = "monte_carlo_mp"
+nb_simulations = 10_000_000
+avg_goals = 4.5
+
+[standings]
+"Unit3d" = 0
+"Athletic Dragon Blanc" = 3
+"PANAM ALL STARZ" = 0
+"Wolf Pack FC" = 3
+"KARASU" = 3
+"Generation Seven" = 3
+"360 Nation" = 0
+"FC SILMI" = 0
+
+[strengths]
+"Unit3d" = 50
+"Athletic Dragon Blanc" = 50
+"PANAM ALL STARZ" = 50
+"Wolf Pack FC" = 50
+"KARASU" = 50
+"Generation Seven" = 50
+"360 Nation" = 50
+"FC SILMI" = 50
+
+# Génère automatiquement tous les matchs round-robin
+# en excluant les matchs déjà joués
+[matches]
+mode = "round_robin"
+played = [
+    ["Wolf Pack FC", "FC SILMI"],
+    ["Unit3d", "Athletic Dragon Blanc"],
+    ["Generation Seven", "360 Nation"],
+    ["PANAM ALL STARZ", "KARASU"],
+]
