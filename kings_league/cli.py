@@ -35,6 +35,7 @@ def run_simulation(config: MatchdayConfig) -> tuple[dict[str, list[int]], int]:
                 config.remaining_matches,
                 strengths=config.strengths,
                 avg_goals=config.avg_goals,
+                goal_diff=config.goal_diff,
             )
             return counter, config.nb_simulations
 
@@ -45,6 +46,7 @@ def run_simulation(config: MatchdayConfig) -> tuple[dict[str, list[int]], int]:
                 config.remaining_matches,
                 strengths=config.strengths,
                 avg_goals=config.avg_goals,
+                goal_diff=config.goal_diff,
             )
             return counter, config.nb_simulations
 

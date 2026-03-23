@@ -14,6 +14,7 @@ class MatchdayConfig:
     split: int
     journee: int
     standings: dict[str, int]
+    goal_diff: dict[str, int]
     remaining_matches: list[tuple[str, str]]
     strengths: dict[str, int]
     method: str = "monte_carlo_mp"
@@ -50,8 +51,22 @@ def load_config(path: Path) -> MatchdayConfig:
     matches_cfg = data.get("matches", {})
     mode = matches_cfg.get("mode", "explicit")
 
+    # Différence de buts initiale depuis les matchs joués
+    goal_diff: dict[str, int] = {team: 0 for team in teams}
+
     if mode == "round_robin":
-        played = {tuple(m) for m in matches_cfg.get("played", [])}
+        raw_played = matches_cfg.get("played", [])
+        # Support ancien format (listes) et nouveau format (dicts avec scores)
+        if raw_played and isinstance(raw_played[0], dict):
+            played = set()
+            for m in raw_played:
+                played.add((m["home"], m["away"]))
+                if "score" in m:
+                    gh, ga = m["score"]
+                    goal_diff[m["home"]] += gh - ga
+                    goal_diff[m["away"]] += ga - gh
+        else:
+            played = {tuple(m) for m in raw_played}
         remaining_matches = [(a, b) for a, b in combinations(teams, 2) if (a, b) not in played and (b, a) not in played]
     else:
         remaining_matches = [(m["home"], m["away"]) for m in data.get("remaining_matches", [])]
@@ -64,6 +79,7 @@ def load_config(path: Path) -> MatchdayConfig:
         split=int(matchday["split"]),
         journee=int(matchday["journee"]),
         standings=standings,
+        goal_diff=goal_diff,
         remaining_matches=remaining_matches,
         strengths=strengths,
         method=sim.get("method", "monte_carlo_mp"),

@@ -29,6 +29,7 @@ def _run_simulation(
     strengths: dict[str, int],
     avg_goals: float,
     rng: np.random.Generator,
+    goal_diff: dict[str, int] | None = None,
 ) -> dict[str, list[int]]:
     """Logique de simulation partagée entre les versions single et multiprocessing."""
     teams = list(standings.keys())
@@ -52,6 +53,8 @@ def _run_simulation(
     # Accumuler points, buts marqués, buts encaissés
     base_pts = np.array([standings[t] for t in teams], dtype=np.int64)
     pts = np.tile(base_pts, (nb_sim, 1))
+    # Initialiser la diff de buts avec les matchs déjà joués
+    base_gd = np.array([goal_diff.get(t, 0) if goal_diff else 0 for t in teams], dtype=np.int64)
     gf = np.zeros((nb_sim, nb_teams), dtype=np.int64)
     ga = np.zeros((nb_sim, nb_teams), dtype=np.int64)
 
@@ -69,8 +72,8 @@ def _run_simulation(
         pts[:, ih] += np.where(home_wins, 3, 0)
         pts[:, ia] += np.where(~home_wins, 3, 0)
 
-    # Classement : -points, -diff buts, -buts marqués, aléatoire (départage)
-    goal_diff = gf - ga
+    # Classement : -points, -diff buts (initiale + simulée), -buts marqués, aléatoire
+    goal_diff = gf - ga + base_gd
     tiebreak = rng.random((nb_sim, nb_teams))
 
     position_counter: dict[str, list[int]] = {t: [0] * nb_teams for t in teams}
@@ -88,6 +91,7 @@ def simulate_monte_carlo(
     remaining_matches: list[tuple[str, str]],
     strengths: dict[str, int] | None = None,
     avg_goals: float = 4.5,
+    goal_diff: dict[str, int] | None = None,
 ) -> dict[str, list[int]]:
     """Simulation Monte Carlo single-thread avec scores Poisson."""
     teams = list(standings.keys())
@@ -95,7 +99,7 @@ def simulate_monte_carlo(
         strengths = {t: 50 for t in teams}
 
     rng = np.random.default_rng()
-    return _run_simulation(nb_simulations, standings, remaining_matches, strengths, avg_goals, rng)
+    return _run_simulation(nb_simulations, standings, remaining_matches, strengths, avg_goals, rng, goal_diff)
 
 
 # --- Version multiprocessing ---
@@ -108,10 +112,11 @@ def _worker(
     strengths: dict[str, int],
     avg_goals: float,
     seed_entropy: int | Sequence[int] | None,
+    goal_diff: dict[str, int] | None = None,
 ) -> dict[str, list[int]]:
     """Worker exécuté dans un processus séparé avec son propre RNG."""
     rng = np.random.default_rng(seed_entropy)
-    return _run_simulation(nb_sim, standings, remaining_matches, strengths, avg_goals, rng)
+    return _run_simulation(nb_sim, standings, remaining_matches, strengths, avg_goals, rng, goal_diff)
 
 
 def simulate_monte_carlo_mp(
@@ -120,6 +125,7 @@ def simulate_monte_carlo_mp(
     remaining_matches: list[tuple[str, str]],
     strengths: dict[str, int] | None = None,
     avg_goals: float = 4.5,
+    goal_diff: dict[str, int] | None = None,
 ) -> dict[str, list[int]]:
     """Simulation Monte Carlo répartie sur tous les coeurs CPU.
 
@@ -147,6 +153,7 @@ def simulate_monte_carlo_mp(
                 strengths,
                 avg_goals,
                 child_seeds[i].entropy,
+                goal_diff,
             )
             for i in range(num_workers)
         ]

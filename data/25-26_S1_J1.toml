@@ -32,9 +32,24 @@ avg_goals = 4.5
 # en excluant les matchs déjà joués
 [matches]
 mode = "round_robin"
-played = [
-    ["Wolf Pack FC", "FC SILMI"],
-    ["Unit3d", "Athletic Dragon Blanc"],
-    ["Generation Seven", "360 Nation"],
-    ["PANAM ALL STARZ", "KARASU"],
-]
+
+# Matchs déjà joués avec leurs scores
+[[matches.played]]
+home = "FC SILMI"
+away = "Wolf Pack FC"
+score = [6, 8]
+
+[[matches.played]]
+home = "Unit3d"
+away = "Athletic Dragon Blanc"
+score = [3, 5]
+
+[[matches.played]]
+home = "360 Nation"
+away = "Generation Seven"
+score = [3, 8]
+
+[[matches.played]]
+home = "PANAM ALL STARZ"
+away = "KARASU"
+score = [4, 8]
