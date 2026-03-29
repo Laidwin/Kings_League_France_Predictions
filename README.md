@@ -89,6 +89,10 @@ played = [
 
 ![Journée 1](result/2025-2026/split_1/J1.png)
 
+#### Journée 2
+
+![Journée 2](result/2025-2026/split_1/J2.png)
+
 ### Historique
 
 - [Résultats](result/README.md)
