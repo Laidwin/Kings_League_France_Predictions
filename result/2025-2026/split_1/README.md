@@ -7,3 +7,7 @@
 ## Journée 2
 
 ![Journée 2](J2.png)
+
+## Journée 3
+
+![Journée 3](J3.png)
