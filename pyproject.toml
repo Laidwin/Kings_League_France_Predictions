@@ -29,3 +29,7 @@ select = ["E", "F", "W", "I", "UP", "B", "SIM"]
 
 [tool.setuptools]
 packages = ["kings_league"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

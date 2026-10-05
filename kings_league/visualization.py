@@ -100,7 +100,7 @@ def generate_heatmap(df: pd.DataFrame, output_path: Path, title: str) -> None:
     ax.tick_params(axis="y", rotation=0)
 
     fig.tight_layout()
-    fig.savefig(output_path, dpi=300)
+    fig.savefig(output_path, dpi=50)
     plt.close(fig)
 
     print(f"Heatmap exportée : {output_path}")
